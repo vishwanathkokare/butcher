@@ -7,14 +7,25 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+    
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
+      includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
       manifest: {
         name: "Butcher",
         short_name: "Butcher",
         description: "Online Butcher Shop",
         theme_color: "#ffffff",
                     icons: [
+                      {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
               {
                 src: "windows11/SmallTile.scale-100.png",
                 sizes: "71x71",

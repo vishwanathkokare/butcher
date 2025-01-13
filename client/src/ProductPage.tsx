@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useLocation } from 'react-router-dom';
 import { useCart } from './contexts/CartContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button.tsx';
 
