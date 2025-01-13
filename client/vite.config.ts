@@ -10,7 +10,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
-        name: "Butcher Shop",
+        name: "Butcher",
         short_name: "Butcher",
         description: "Online Butcher Shop",
         theme_color: "#ffffff",
