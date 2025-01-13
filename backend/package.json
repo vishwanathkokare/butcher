@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "build": "netlify deploy --prod",
+    "dev": "nodemon functions/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
