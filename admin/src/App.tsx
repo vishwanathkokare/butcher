@@ -25,7 +25,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('/api/v1/order');
+        const response = await axios.get('https://butcher-jtol.onrender.com/api/v1/order');
         setOrders(response.data.orders.reverse()); // Reverse the order of the fetched orders
       } catch (error) {
         console.error('Error fetching orders:', error);

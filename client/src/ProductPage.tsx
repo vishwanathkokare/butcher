@@ -26,7 +26,7 @@ const ProductPage: React.FC = () => {
 
     const fetchProductPrice = async () => {
       try {
-        const response = await axios.get(`/api/v1/market/prices/${name}`);
+        const response = await axios.get(`https://butcher-jtol.onrender.com/api/v1/market/prices/${name}`);
         setPrice(response.data.price);
       } catch (error) {
         console.error('Error fetching product price:', error);

@@ -101,7 +101,7 @@ const CartPage: React.FC = () => {
     };
 
     try {
-      const response = await axios.post('/api/v1/order/create', orderData);
+      const response = await axios.post('https://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.com/api/v1/order/create', orderData);
       if (response.data.success) {
         alert('Order created successfully');
         dispatch({ type: 'CLEAR_CART', payload: { name: '', quantity: 0, image: '', price: 0 } });
