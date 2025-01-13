@@ -5,8 +5,6 @@ import connectDB from '../database/index.js';
 import orderRouter from '../routes/order.js';
 import marketRouter from '../routes/market.js';
 import cors from 'cors';
-import serverless from 'serverless-http';
-
 // configure dot env
 dotenv.config();
 
@@ -35,4 +33,4 @@ app.listen(port,()=>{
     console.log('server started on',port);
 });
 
-export default serverless(app);
+export default app;
