@@ -18,7 +18,7 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors({
-    origin: ['https://glittering-entremet-4a3e91.netlify.app','https//euphonious-bublanina-b73a07.netlify.app'],
+    origin: *,
     methods: 'GET,POST,PUT,DELETE'
 }));
 
