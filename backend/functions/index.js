@@ -18,7 +18,7 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors({
-    origin: 'https://supreme-computing-machine-w5p4g6xjx6jcw7x-5173.app.github.dev',
+    origin: process.env.CORS_ORIGIN,
     methods: 'GET,POST,PUT,DELETE'
 }));
 
