@@ -23,8 +23,8 @@ app.use(cors({
 }));
 
 //routes
-app.use('/v1/order',orderRouter)
-app.use('/v1/market',marketRouter)
+app.use('/api/v1/order',orderRouter)
+app.use('/api/v1/market',marketRouter)
 app.get('/',(req,res)=>{
     res.send('Welcome to the market place');
 }
