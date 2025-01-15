@@ -18,13 +18,13 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors({
-    origin: 'https://supreme-computing-machine-w5p4g6xjx6jcw7x-5173.app.github.dev',
+    origin: '*',
     methods: 'GET,POST,PUT,DELETE'
 }));
 
 //routes
-app.use('/v1/order',orderRouter)
-app.use('/v1/market',marketRouter)
+app.use('/api/v1/order',orderRouter)
+app.use('/api/v1/market',marketRouter)
 app.get('/',(req,res)=>{
     res.send('Welcome to the market place');
 }
