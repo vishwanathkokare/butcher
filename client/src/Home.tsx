@@ -10,7 +10,6 @@ const Home = () => {
       </h1>
       <div className="grid grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <HomeBox Image={Chicken} Name="Chicken" />
-
         <HomeBox Image={Mutton} Name="Mutton" />
         <HomeBox Image={Eggs} Name="Eggs" />
       </div>
