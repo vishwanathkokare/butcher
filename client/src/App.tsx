@@ -4,7 +4,7 @@ import Home from "./Home";
 import ProductPage from "./ProductPage";
 import { CartProvider } from "./contexts/CartContext";
 import CartPage from "./CartPage";
-import Navbar from "@/components/ui/Navbar"
+import NotFound from "./NotFound";
 
 const App: React.FC = () => {
   return (
@@ -14,8 +14,8 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/products/:name" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        <Navbar />
       </Router>
     </CartProvider>
   );

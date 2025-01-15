@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useCart } from './contexts/CartContext';
 import {Input} from '@/components/ui/input.tsx';
 import {Button} from '@/components/ui/button.tsx';
+import Navbar from './components/ui/Navbar';
 
 const ProductPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -80,7 +81,8 @@ const ProductPage: React.FC = () => {
 
 
   return (
-    <div className="container p-4 mx-auto py-10 gap-6 h-[90vh]">
+    <>
+    <div className="container p-4 mx-auto pb-24 gap-6 ">
       {image && <img src={image} alt={name} className="w-full h-64 object-contain mb-4" />}
       <form className='flex flex-col gap-4'>
         <Input
@@ -91,7 +93,7 @@ const ProductPage: React.FC = () => {
         />
         {errors.quantity && <p className="text-red-500">{errors.quantity}</p>}
         {name && name.toLowerCase() !== 'eggs' && (
-          <div className='flex gap-4'>
+          <div className='flex gap-4 flex-wrap'>
             {name && name.toLowerCase() === 'mutton' && (
               <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(0.25)}>250g</p>
             )}
@@ -114,6 +116,8 @@ const ProductPage: React.FC = () => {
         </Button>
       </form>
     </div>
+    <Navbar />
+    </>
   );
 }
 

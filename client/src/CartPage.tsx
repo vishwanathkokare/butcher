@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Navbar from './components/ui/Navbar';
 
 const CartPage: React.FC = () => {
   const { state, dispatch } = useCart();
@@ -118,7 +119,8 @@ const CartPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 h-[90vh]">
+  <>
+    <div className="container mx-auto p-4 pb-24">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-2/3">
           <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
@@ -127,7 +129,7 @@ const CartPage: React.FC = () => {
               <p>Your cart is empty</p>
             ) : (
               state.items.map((item) => (
-                <div key={item.name} className="flex items-center border-b py-4">
+                <div key={item.name} className="flex items-center justify-evenly border-b py-4">
                   <img src={item.image} alt={item.name} className="w-24 h-24 object-cover mr-4" />
                   <div>
                     <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -152,8 +154,9 @@ const CartPage: React.FC = () => {
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </div>
+                    <p className="ml-auto text-lg mt-2 font-semibold">₹{(item.quantity * item.price).toFixed(2)}</p>
                   </div>
-                  <p className="ml-auto text-lg font-semibold">₹{(item.quantity * item.price).toFixed(2)}</p>
+                  
                 </div>
               ))
             )}
@@ -217,6 +220,8 @@ const CartPage: React.FC = () => {
         </form>
       </Modal>
     </div>
+    <Navbar />
+    </>
   );
 };
 
