@@ -16,12 +16,20 @@ const ProductPage: React.FC = () => {
   const [errors, setErrors] = useState({
     quantity: '',
   });
-
+  
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const imageUrl = params.get('image');
     if (imageUrl) {
       setImage(imageUrl);
+    }
+
+    if (name && name.toLowerCase() === 'eggs' && quantity < 12) {
+      setQuantity(12);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        quantity: 'Minimum quantity for eggs is 12',
+      }));
     }
 
     const fetchProductPrice = async () => {
@@ -34,7 +42,7 @@ const ProductPage: React.FC = () => {
     };
 
     fetchProductPrice();
-  }, [location.search, name]);
+  }, [location.search, name, quantity]);
 
   const validate = () => {
     let valid = true;
