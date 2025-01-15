@@ -75,7 +75,9 @@ const ProductPage: React.FC = () => {
     }
   };
 
+
   const totalPrice = price * Number(quantity);
+
 
   return (
     <div className="container p-4 mx-auto py-10 gap-6 h-[90vh]">
@@ -88,6 +90,22 @@ const ProductPage: React.FC = () => {
           placeholder="Quantity"
         />
         {errors.quantity && <p className="text-red-500">{errors.quantity}</p>}
+        {name && name.toLowerCase() !== 'eggs' && (
+          <div className='flex gap-4'>
+            {name && name.toLowerCase() === 'mutton' && (
+              <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(0.25)}>250g</p>
+            )}
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(0.5)}>500g</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(1)}>1kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(1.5)}>1.5kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(2)}>2kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(2.5)}>2.5kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(3)}>3kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(3.5)}>3.5kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(4)}>4kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(4.5)}>4.5kg</p>
+          <p className='border rounded cursor-pointer py-1 px-3' onClick={() => setQuantity(5)}>5kg</p>
+        </div>)} 
         <div className="text-lg font-semibold">
           Total Price: ₹{totalPrice.toFixed(2)}
         </div>
