@@ -1,6 +1,6 @@
 import HomeBox from "./components/ui/HomeBox"
 import Chicken from "@/assets/chicken.webp"
-import Mutton from "@/assets/mutton.jpg"
+import Mutton from "@/assets/goat.jpg"
 import Eggs from '@/assets/eggs.webp'
 const Home = () => {
   return(   <div className="max-w-7xl mx-auto p-6 h-[90vh]">
