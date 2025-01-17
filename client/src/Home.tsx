@@ -8,7 +8,7 @@ const Home = () => {
     <>
     <div className="container mx-auto p-6 pb-24">
       <h1 className="text-4xl font-semibold text-left text-gray-800 mb-8">
-        Categories
+        Butcher
       </h1>
       <div className="grid grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <HomeBox Image={Chicken} Name="Chicken" />
