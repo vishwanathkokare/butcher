@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./components/ui/Navbar";
 import Loading from "./components/ui/Loading";
+import toast from "react-hot-toast";
 
 const CartPage: React.FC = () => {
   const { state, dispatch } = useCart();
@@ -62,7 +63,7 @@ const CartPage: React.FC = () => {
     if (state.items.length > 0) {
       setIsModalOpen(true);
     } else {
-      alert("Your cart is empty");
+      toast.error("Your cart is empty");
     }
   };
 
@@ -122,18 +123,18 @@ const CartPage: React.FC = () => {
         orderData
       );
       if (response.data.success) {
-        alert("Order created successfully");
+        toast.success("Order created successfully");
         dispatch({
           type: "CLEAR_CART",
           payload: { name: "", quantity: 0, image: "", price: 0 },
         });
         window.location.href = "/";
       } else {
-        alert("Failed to create order");
+        toast.error("Failed to create order");
       }
     } catch (error) {
       console.error("Error creating order:", error);
-      alert("Error creating order");
+      toast.error("Error creating order");
     } finally {
       setIsLoading(false);
     }

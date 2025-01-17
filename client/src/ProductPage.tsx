@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import Navbar from "./components/ui/Navbar";
 import Loading from "./components/ui/Loading";
+import { toast } from "react-hot-toast";
 
 const ProductPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -83,7 +84,7 @@ const ProductPage: React.FC = () => {
         2000
       );
       setLoading(false);
-      alert("Added to cart");
+      toast.success("Added to cart");
     }
   };
 

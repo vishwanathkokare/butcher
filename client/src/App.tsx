@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./contexts/CartContext";
 import Reload from "./components/ui/Reload";
 import Loading from "./components/ui/Loading";
+import { Toaster } from "react-hot-toast";
 
 const Home = lazy(() => import("./Home"));
 const ProductPage = lazy(() => import("./ProductPage"));
@@ -27,6 +28,7 @@ const App: React.FC = () => {
 
   return (
     <CartProvider>
+      <Toaster position="top-right" reverseOrder={false} />
       <Router>
         {!isOnline && <Reload />}
         <Suspense fallback={<Loading />}>
