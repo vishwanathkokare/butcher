@@ -14,10 +14,14 @@ import toast from "react-hot-toast";
 const CartPage: React.FC = () => {
   const { state, dispatch } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const fetchDetails = localStorage.getItem("details");
+  const parseFetchDetails = fetchDetails
+    ? JSON.parse(fetchDetails)
+    : { name: "", address: "", phone: "" };
   const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    phone: "",
+    name: parseFetchDetails.name,
+    address: parseFetchDetails.address,
+    phone: parseFetchDetails.phone,
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -132,6 +136,14 @@ const CartPage: React.FC = () => {
       } else {
         toast.error("Failed to create order");
       }
+      localStorage.setItem(
+        "details",
+        JSON.stringify({
+          name: orderData.name,
+          address: orderData.address,
+          phone: orderData.phone,
+        })
+      );
     } catch (error) {
       console.error("Error creating order:", error);
       toast.error("Error creating order");
