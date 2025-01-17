@@ -93,7 +93,7 @@ const ProductPage: React.FC = () => {
   if (loading) return <Loading />;
 
   return (
-    <>
+    <div className="bg-slate-50 h-screen">
       <div className="container p-4 mx-auto pb-24 gap-6 ">
         {image && (
           <img
@@ -196,7 +196,7 @@ const ProductPage: React.FC = () => {
         </form>
       </div>
       <Navbar />
-    </>
+    </div>
   );
 };
 

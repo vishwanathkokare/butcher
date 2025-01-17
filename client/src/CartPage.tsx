@@ -153,7 +153,7 @@ const CartPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="bg-slate-50 h-screen">
       <div className="container mx-auto p-4 pb-24">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-2/3">
@@ -269,7 +269,7 @@ const CartPage: React.FC = () => {
         </Modal>
       </div>
       <Navbar />
-    </>
+    </div>
   );
 };
 

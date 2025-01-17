@@ -5,8 +5,8 @@ import Eggs from "@/assets/eggs.webp";
 import Navbar from "./components/ui/Navbar";
 const Home = () => {
   return (
-    <>
-    <div className="container mx-auto p-6 pb-24">
+    <div className="bg-slate-50 h-screen">
+    <div className=" container mx-auto p-6 pb-24">
       <h1 className="text-4xl font-semibold text-left text-gray-800 mb-8">
         Butcher
       </h1>
@@ -17,7 +17,7 @@ const Home = () => {
       </div>
     </div>
     <Navbar />
-    </>
+    </div>
   );
 };
 
