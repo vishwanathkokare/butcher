@@ -188,10 +188,10 @@ const ProductPage: React.FC = () => {
           <Button
             type="button"
             onClick={handleAddToCart}
-            className="w-full bg-blue-500 text-white py-2 rounded"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white py-2 rounded"
             disabled={loading}
           >
-            {loading ? <Loading /> : "Add to Cart"}
+            {loading ? 'Adding to Cart' : "Add to Cart"}
           </Button>
         </form>
       </div>
