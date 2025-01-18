@@ -71,13 +71,7 @@ cd client
 npm install
 ```
 
-3. create a .env file in the client or admin directory and ad your backend connection string:
-
-```sh
-REACT_APP_API_URL="http://localhost:3000/"
-```
-
-4. start development server:
+3. start development server:
 
 ```sh
 npm run dev
