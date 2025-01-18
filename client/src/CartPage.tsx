@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import Navbar from "./components/ui/Navbar";
 import Loading from "./components/ui/Loading";
 import toast from "react-hot-toast";
 
@@ -268,7 +267,6 @@ const CartPage: React.FC = () => {
           </form>
         </Modal>
       </div>
-      <Navbar />
     </div>
   );
 };

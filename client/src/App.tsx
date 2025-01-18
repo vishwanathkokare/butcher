@@ -4,6 +4,8 @@ import { CartProvider } from "./contexts/CartContext";
 import Reload from "./components/ui/Reload";
 import Loading from "./components/ui/Loading";
 import { Toaster } from "react-hot-toast";
+import Navbar from "./components/ui/Navbar";
+import Header from "./components/ui/Header";
 
 const Home = lazy(() => import("./Home"));
 const ProductPage = lazy(() => import("./ProductPage"));
@@ -30,6 +32,7 @@ const App: React.FC = () => {
     <CartProvider>
       <Toaster position="top-right" reverseOrder={false} />
       <Router>
+        <Header />
         {!isOnline && <Reload />}
         <Suspense fallback={<Loading />}>
           <Routes>
@@ -39,6 +42,8 @@ const App: React.FC = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+
+        <Navbar />
       </Router>
     </CartProvider>
   );
