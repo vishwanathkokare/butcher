@@ -12,7 +12,7 @@ const Reload: React.FC = () => {
         <p className="mb-4">Please check your internet connection and try again.</p>
         <button
           onClick={handleReload}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white dark:text-black font-bold py-2 px-4 rounded"
         >
           Reload
         </button>

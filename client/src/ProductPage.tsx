@@ -92,7 +92,7 @@ const ProductPage: React.FC = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="bg-slate-50 h-screen">
+    <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-900 h-screen">
       <div className="container p-4 mx-auto pb-24 gap-6 ">
         {image && (
           <img
@@ -102,79 +102,83 @@ const ProductPage: React.FC = () => {
           />
         )}
         <form className="flex flex-col gap-4">
-          <Input
-            name="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            placeholder="Quantity"
-          />
+          <div className="w-full">
+            kg:
+            <Input
+              className="rounded"
+              name="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              placeholder="Quantity"
+            />
+          </div>
           {errors.quantity && <p className="text-red-500">{errors.quantity}</p>}
           {name && name.toLowerCase() !== "eggs" && (
             <div className="flex gap-4 flex-wrap">
               {name && name.toLowerCase() === "mutton" && (
                 <p
-                  className="border rounded cursor-pointer py-1 px-3"
+                  className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                   onClick={() => setQuantity(0.25)}
                 >
                   250g
                 </p>
               )}
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(0.5)}
               >
                 500g
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(1)}
               >
                 1kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(1.5)}
               >
                 1.5kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(2)}
               >
                 2kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(2.5)}
               >
                 2.5kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(3)}
               >
                 3kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(3.5)}
               >
                 3.5kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(4)}
               >
                 4kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(4.5)}
               >
                 4.5kg
               </p>
               <p
-                className="border rounded cursor-pointer py-1 px-3"
+                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
                 onClick={() => setQuantity(5)}
               >
                 5kg
@@ -187,10 +191,10 @@ const ProductPage: React.FC = () => {
           <Button
             type="button"
             onClick={handleAddToCart}
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white py-2 rounded"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-black dark:text-white py-2 rounded"
             disabled={loading}
           >
-            {loading ? 'Adding to Cart' : "Add to Cart"}
+            {loading ? "Adding to Cart" : "Add to Cart"}
           </Button>
         </form>
       </div>

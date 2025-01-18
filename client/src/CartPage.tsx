@@ -152,7 +152,7 @@ const CartPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-50 h-screen">
+    <div className="bg-gray-200 dark:bg-zinc-900 text-black dark:text-white h-screen">
       <div className="container mx-auto p-4 pb-24">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-2/3">
@@ -164,7 +164,7 @@ const CartPage: React.FC = () => {
                 state.items.map((item) => (
                   <div
                     key={item.name}
-                    className="flex items-center justify-evenly border-b py-4"
+                    className="flex items-center justify-evenly border-b border-black dark:border-white py-4"
                   >
                     <img
                       src={item.image}
@@ -189,7 +189,7 @@ const CartPage: React.FC = () => {
                         </button>
                         <button
                           onClick={() => handleDelete(item.name)}
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-4"
+                          className="bg-red-500 hover:bg-red-700 text-black dark:text-white font-bold py-2 px-4 rounded-full ml-4"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
@@ -205,7 +205,7 @@ const CartPage: React.FC = () => {
           </div>
 
           <div className="md:w-1/3 md:ml-8 mb-[14vh]">
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <div className="bg-gray-100 text-black p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Order Summary</h3>
               <div className="flex justify-between mb-4">
                 <span>Subtotal:</span>
@@ -224,7 +224,7 @@ const CartPage: React.FC = () => {
               </div>
               <button
                 onClick={handleCheckout}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full mt-4"
+                className="bg-blue-500 hover:bg-blue-700 text-white dark:text-black font-bold py-3 px-6 rounded-full w-full mt-4"
                 disabled={isLoading}
               >
                 {isLoading ? <Loading /> : "Order Now"}
@@ -234,7 +234,7 @@ const CartPage: React.FC = () => {
         </div>
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h2 className="text-2xl font-bold mb-4">Enter Your Details</h2>
+          <h2 className="text-2xl text-black font-bold mb-4">Enter Your Details</h2>
           <form className="flex flex-col gap-4">
             <Input
               name="name"
@@ -260,7 +260,7 @@ const CartPage: React.FC = () => {
             <Button
               type="button"
               onClick={handleSubmit}
-              className="w-full bg-blue-500 text-white py-2 rounded"
+              className="w-full bg-blue-500 text-white dark:text-black py-2 rounded"
             >
               Submit
             </Button>
