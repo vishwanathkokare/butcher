@@ -105,24 +105,20 @@ const CartPage: React.FC = () => {
     return isValid;
   };
 
-  const handleSubmit = async () => {
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsLoading(true);
-
+  const createOrder = async (orderType: string) => {
     const orderData = {
       name: formData.name,
       quantity: state.items.reduce((total, item) => total + item.quantity, 0),
       address: formData.address,
       phone: formData.phone,
       items: state.items,
+      total: calculateTotal(),
+      paymentType: orderType,
     };
 
     try {
       const response = await axios.post(
-        "https://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.com/api/v1/order/create",
+        "https://butcher-jtol.onrender.com/api/v1/order/create",
         orderData
       );
       if (response.data.success) {
@@ -149,6 +145,74 @@ const CartPage: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSuccessSubmit = async (response:any,orderType: string) => {
+    try {
+      const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+        response;
+      const verifyResponse = await axios.post("https://butcher-jtol.onrender.com/api/v1/payment/verify", {
+        razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature,
+      });
+
+      if (verifyResponse.data.status === "success") {
+        toast.success("Payment successful!");
+        // Handle successful payment here
+        createOrder(orderType);
+      } else {
+        toast.error("Payment verification failed!");
+      }
+    } catch (error) {
+      toast.error("Payment verification failed!");
+    }
+  };
+
+  const handleSubmit = async (orderType: string) => {
+    if (!validateForm()) {
+      return;
+    }
+    setIsLoading(true);
+    if (orderType === "online") {
+      try {
+        const orderResponse = await axios.post(
+          "https://butcher-jtol.onrender.com/api/v1/payment/order",
+          {
+            amount: calculateTotal(),
+          }
+        );
+        const { amount, id: order_id, currency } = orderResponse.data;
+
+        const options = {
+          key: process.env.RAZORPAY_KEY_ID,
+          amount: amount.toString(),
+          currency: currency,
+          name: "Butcher",
+          description: "Transaction",
+          order_id: order_id,
+          handler: handleSuccessSubmit,
+          prefill: {
+            name: formData.name,
+            email: "customer@example.com",
+            contact: formData.phone,
+          },
+          notes: {
+            address: formData.address,
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+
+        const rzp = new (window as any).Razorpay(options);
+        rzp.open();
+      } catch (error) {
+        toast.error("Failed to make payment!");
+      }
+    }else if (orderType === "cod") {
+      createOrder(orderType); 
+      }
   };
 
   return (
@@ -234,7 +298,9 @@ const CartPage: React.FC = () => {
         </div>
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h2 className="text-2xl text-black font-bold mb-4">Enter Your Details</h2>
+          <h2 className="text-2xl text-black font-bold mb-4">
+            Enter Your Details
+          </h2>
           <form className="flex flex-col gap-4">
             <Input
               name="name"
@@ -259,10 +325,17 @@ const CartPage: React.FC = () => {
             {errors.address && <p className="text-red-500">{errors.address}</p>}
             <Button
               type="button"
-              onClick={handleSubmit}
+              onClick={() => handleSubmit("cod")}
               className="w-full bg-blue-500 text-white dark:text-black py-2 rounded"
             >
-              Submit
+              Cash on Delivery
+            </Button>
+            <Button
+              type="button"
+              onClick={() => handleSubmit("online")}
+              className="w-full bg-blue-500 text-white dark:text-black py-2 rounded"
+            >
+              Online Payment
             </Button>
           </form>
         </Modal>

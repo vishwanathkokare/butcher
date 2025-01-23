@@ -25,6 +25,15 @@ const orderSchema = new mongoose.Schema({
       image: String,
     },
   ],
+  total: {
+    type: Number,
+    required: true,
+  },
+  paymentType: {
+    type: String,
+    enum: ["online", "cod"],
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

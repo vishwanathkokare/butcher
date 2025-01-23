@@ -25,6 +25,8 @@ app.use(cors({
 //routes
 app.use('/api/v1/order',orderRouter)
 app.use('/api/v1/market',marketRouter)
+app.use('/api/v1/payment', paymentRouter); // Add the payment route
+
 app.get('/',(req,res)=>{
     res.send('Welcome to the market place');
 }
