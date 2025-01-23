@@ -2,6 +2,7 @@ import HomeBox from "./components/ui/HomeBox";
 import Chicken from "@/assets/chicken.webp";
 import Mutton from "@/assets/goat.jpg";
 import Eggs from "@/assets/eggs.webp";
+import Beef from "@/assets/beef.png";
 const Home = () => {
   return (
     <div className="bg-gray-200 dark:bg-zinc-900 h-screen">
@@ -10,6 +11,7 @@ const Home = () => {
         <HomeBox Image={Chicken} Name="Chicken" />
         <HomeBox Image={Mutton} Name="Mutton" />
         <HomeBox Image={Eggs} Name="Eggs" />
+        <HomeBox Image={Beef} Name="Beef" />
       </div>
     </div>
     </div>
