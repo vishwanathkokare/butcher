@@ -4,7 +4,7 @@ const productPriceSchema = new mongoose.Schema({
   product: {
     type: String,
     required: true,
-    enum: ['Chicken', 'Mutton', 'Eggs']
+    enum: ['Chicken', 'Mutton', 'Eggs', 'Beef']
   },
   price: {
     type: Number,
