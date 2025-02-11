@@ -122,7 +122,7 @@ const CartPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.comhttps://butcher-jtol.onrender.com/api/v1/order/create",
+        "https://butcher-jtol.onrender.com/api/v1/order/create",
         orderData
       );
       if (response.data.success) {
