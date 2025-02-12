@@ -36,15 +36,15 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         ...state,
         items: state.items.map(item =>
-          item.name === action.payload.name ? { ...item, quantity: item.quantity + 1 } : item
+          item.name === action.payload.name ? { ...item, quantity: item.quantity + 0.5 } : item
         ),
       };
     case 'DECREMENT_QUANTITY':
       return {
         ...state,
         items: state.items.map(item =>
-          item.name === action.payload.name && item.quantity > 1
-            ? { ...item, quantity: item.quantity - 1 }
+          item.name === action.payload.name && item.quantity > 0.5
+            ? { ...item, quantity: item.quantity - 0.5 }
             : item
         ),
       };
