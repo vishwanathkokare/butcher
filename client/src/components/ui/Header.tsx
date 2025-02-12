@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC = () => {
   return (
-  <header className="bg-gray-200 dark:bg-zinc-900 text-black dark:text-white py-4">
+  <header className="bg-gray-200 dark:bg-zinc-800 text-black dark:text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl ml-5 md:ml-0 font-bold">
           <Link to="/">Butcher</Link>
