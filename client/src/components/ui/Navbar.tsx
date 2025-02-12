@@ -3,7 +3,7 @@ import { faShoppingCart, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   return (
-    <nav className="text-black dark:text-white block md:hidden flex flex-row bg-gray-200 dark:bg-zinc-900 justify-evenly items-center  border border-1 border-black dark:border-white fixed bottom-0 w-full bg-white h-16">
+    <nav className="text-black dark:text-white block md:hidden flex flex-row bg-gray-200 dark:bg-zinc-800 justify-evenly items-center  border border-1 border-black dark:border-white fixed bottom-0 w-full h-16">
       <a
         className="border-r border-black dark:border-white w-full h-full flex items-center justify-center"
         href="/"
