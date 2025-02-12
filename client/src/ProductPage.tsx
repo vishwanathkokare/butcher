@@ -92,111 +92,82 @@ const ProductPage: React.FC = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-900 h-screen">
-      <div className="container p-4 mx-auto pb-24 gap-6 ">
-        {image && (
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-64 object-contain mb-4"
-          />
-        )}
-        <form className="flex flex-col gap-4">
-          <div className="w-full">
-            kg:
-            <Input
-              className="rounded"
-              name="quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              placeholder="Quantity"
-            />
+    <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-800 min-h-screen p-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Section - Image */}
+          <div className="flex justify-center items-center">
+            {image && (
+              <img
+                src={image}
+                alt={name}
+                className="w-full max-w-md h-auto object-contain rounded-lg"
+              />
+            )}
           </div>
-          {errors.quantity && <p className="text-red-500">{errors.quantity}</p>}
-          {name && name.toLowerCase() !== "eggs" && (
-            <div className="flex gap-4 flex-wrap">
-              {name && name.toLowerCase() === "mutton" && (
-                <p
-                  className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                  onClick={() => setQuantity(0.25)}
-                >
-                  250g
-                </p>
+
+          {/* Right Section - Product Details */}
+          <div className="flex flex-col gap-6">
+            <h1 className="text-3xl font-bold">{name}</h1>
+
+            {/* Quantity Input */}
+            <div className="w-full">
+              <label htmlFor="quantity" className="block text-lg font-medium">
+                Quantity (kg):
+              </label>
+              <Input
+                id="quantity"
+                className="rounded mt-2"
+                name="quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                placeholder="Enter quantity"
+              />
+              {errors.quantity && (
+                <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>
               )}
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(0.5)}
-              >
-                500g
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(1)}
-              >
-                1kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(1.5)}
-              >
-                1.5kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(2)}
-              >
-                2kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(2.5)}
-              >
-                2.5kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(3)}
-              >
-                3kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(3.5)}
-              >
-                3.5kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(4)}
-              >
-                4kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(4.5)}
-              >
-                4.5kg
-              </p>
-              <p
-                className="border border-black dark:border-white rounded cursor-pointer py-1 px-3"
-                onClick={() => setQuantity(5)}
-              >
-                5kg
-              </p>
             </div>
-          )}
-          <div className="text-lg font-semibold">
-            Total Price: ₹{totalPrice.toFixed(2)}
+
+            {/* Quick Quantity Selectors */}
+            {name && name.toLowerCase() !== "eggs" && (
+              <div className="flex flex-wrap gap-2">
+                {name && name.toLowerCase() === "mutton" && (
+                  <Button
+                    variant="outline"
+                    onClick={() => setQuantity(0.25)}
+                  >
+                    250g
+                  </Button>
+                )}
+                {[0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((qty) => (
+                  <Button
+                    key={qty}
+                    variant="outline"
+                    onClick={() => setQuantity(qty)}
+                  >
+                    {qty}kg
+                  </Button>
+                ))}
+              </div>
+            )}
+
+            {/* Total Price */}
+            <div className="text-2xl font-semibold">
+              Total Price: ₹{totalPrice.toFixed(2)}
+            </div>
+
+            {/* Add to Cart Button */}
+            <Button
+              type="button"
+              onClick={handleAddToCart}
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white py-3 rounded-lg"
+              disabled={loading}
+            >
+              {loading ? "Adding to Cart..." : "Add to Cart"}
+            </Button>
           </div>
-          <Button
-            type="button"
-            onClick={handleAddToCart}
-            className="w-full bg-blue-500 hover:bg-blue-700 text-black dark:text-white py-2 rounded"
-            disabled={loading}
-          >
-            {loading ? "Adding to Cart" : "Add to Cart"}
-          </Button>
-        </form>
+        </div>
       </div>
     </div>
   );
