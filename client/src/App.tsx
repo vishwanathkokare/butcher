@@ -6,6 +6,7 @@ import Loading from "./components/ui/Loading";
 import { Toaster } from "react-hot-toast";
 import Navbar from "./components/ui/Navbar";
 import Header from "./components/ui/Header";
+import SlotTime from "./components/ui/SlotTime";
 
 const Home = lazy(() => import("./Home"));
 const ProductPage = lazy(() => import("./ProductPage"));
@@ -32,6 +33,7 @@ const App: React.FC = () => {
     <CartProvider>
       <Toaster position="top-right" reverseOrder={false} />
       <Router>
+        <SlotTime />
         <Header />
         {!isOnline && <Reload />}
         <Suspense fallback={<Loading />}>
