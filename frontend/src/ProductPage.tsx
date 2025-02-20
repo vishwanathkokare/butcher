@@ -37,7 +37,7 @@ const ProductPage: React.FC = () => {
     const fetchProductPrice = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/market/prices/${name}`
+          `${import.meta.env.API_URL}/market/prices/${name}`
         );
         setPrice(response.data.price);
       } catch (error) {

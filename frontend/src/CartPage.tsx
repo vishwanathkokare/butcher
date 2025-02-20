@@ -37,7 +37,7 @@ const CartPage: React.FC = () => {
       for (const item of state.items) {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/market/prices/${item.name}`
+            `${import.meta.env.API_URL}/market/prices/${item.name}`
           );
           priceMap[item.name] = response.data.price;
         } catch (error) {
@@ -149,7 +149,7 @@ const CartPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/order/create`,
+        `${import.meta.env.API_URL}/order/create`,
         orderData
       );
       if (response.data.success) {
