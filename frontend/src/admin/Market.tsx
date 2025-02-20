@@ -15,7 +15,7 @@ const ProductManagementPage: React.FC = () => {
   useEffect(() => {
     const fetchProductPrices = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/market/prices');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/market/prices`);
         setProductPrices(response.data);
       } catch (error) {
         console.error('Error fetching product prices:', error);
@@ -37,7 +37,7 @@ const ProductManagementPage: React.FC = () => {
   const handleUpdatePrice = async () => {
     if (selectedProduct && newPrice !== '') {
       try {
-        const response = await axios.put(`http://localhost:3000/api/v1/market/prices/${selectedProduct._id}`, { price: newPrice });
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/market/prices/${selectedProduct._id}`, { price: newPrice });
         setProductPrices(productPrices.map(p => (p._id === selectedProduct._id ? response.data : p)));
         setSelectedProduct(null);
         setNewPrice('');
