@@ -37,7 +37,7 @@ const CartPage: React.FC = () => {
       for (const item of state.items) {
         try {
           const response = await axios.get(
-            `${import.meta.env.API_URL}/market/prices/${item.name}`
+            `https://butcher-jtol.onrender.com/api/v1/market/prices/${item.name}`
           );
           priceMap[item.name] = response.data.price;
         } catch (error) {
@@ -149,7 +149,7 @@ const CartPage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.API_URL}/order/create`,
+        `https://butcher-jtol.onrender.com/api/v1/order/create`,
         orderData
       );
       if (response.data.success) {

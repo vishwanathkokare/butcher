@@ -37,7 +37,7 @@ const ProductPage: React.FC = () => {
     const fetchProductPrice = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.API_URL}/market/prices/${name}`
+          `https://butcher-jtol.onrender.com/api/v1/market/prices/${name}`
         );
         setPrice(response.data.price);
       } catch (error) {
