@@ -22,11 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.CORS_URL, // Update this to your frontend's origin
+  origin: process.env.CORS_URL.split(','), 
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
   credentials: true,
 };
+
+console.log('corsOptions origin', corsOptions.origin);
 
 app.use(cors(corsOptions));
 

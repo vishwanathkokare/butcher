@@ -20,6 +20,7 @@ const ProductPage: React.FC = () => {
   });
 
   useEffect(() => {
+    setLoading(true);
     const params = new URLSearchParams(location.search);
     const imageUrl = params.get("image");
     if (imageUrl) {
@@ -35,9 +36,12 @@ const ProductPage: React.FC = () => {
     }
 
     const fetchProductPrice = async () => {
+      console.log("Fetching product price...");
+      console.log(import.meta.env.VITE_API_URL)
+
       try {
         const response = await axios.get(
-          `https://butcher-jtol.onrender.com/api/v1/market/prices/${name}`
+          `${import.meta.env.VITE_API_URL}/api/v1/market/prices/${name}`
         );
         setPrice(response.data.price);
       } catch (error) {

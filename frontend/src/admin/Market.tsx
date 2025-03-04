@@ -15,7 +15,7 @@ const ProductManagementPage: React.FC = () => {
   useEffect(() => {
     const fetchProductPrices = async () => {
       try {
-        const response = await axios.get(`https://butcher-jtol.onrender.com/api/v1/market/prices`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/market/prices`);
         setProductPrices(response.data);
       } catch (error) {
         console.error('Error fetching product prices:', error);
