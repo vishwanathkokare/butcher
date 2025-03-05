@@ -28,8 +28,6 @@ const corsOptions = {
   credentials: true,
 };
 
-console.log('corsOptions origin', corsOptions.origin);
-
 app.use(cors(corsOptions));
 
 // API routes

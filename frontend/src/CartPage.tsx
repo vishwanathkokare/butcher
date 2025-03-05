@@ -37,7 +37,7 @@ const CartPage: React.FC = () => {
       for (const item of state.items) {
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/v1/market/prices/${item.name}`
+            `/api/v1/market/prices/${item.name}`
           );
           priceMap[item.name] = response.data.price;
         } catch (error) {

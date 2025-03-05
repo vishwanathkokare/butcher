@@ -3,3 +3,7 @@ node_modules
 # Local Netlify folder
 .netlify
 bubblewrap
+.replit
+build
+frontend/build
+frontend/build/*.js
