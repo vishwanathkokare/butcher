@@ -7,15 +7,6 @@ module.exports = {
   ],
   theme: {
   	extend: {
-		keyframes: {
-        slide: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
-      },
-      animation: {
-        slide: 'slide 22s infinite',
-      },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -64,6 +55,5 @@ module.exports = {
   			}
   		}
   	}
-  },
-  plugins: [require("tailwindcss-animate")],
+  }
 }
