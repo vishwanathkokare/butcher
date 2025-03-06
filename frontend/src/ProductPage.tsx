@@ -4,7 +4,6 @@ import { useParams, useLocation } from "react-router-dom";
 import { useCart } from "./contexts/CartContext";
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import Loading from "./components/ui/Loading";
 import { toast } from "react-hot-toast";
 
 const ProductPage: React.FC = () => {
