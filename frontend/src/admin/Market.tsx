@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Loading from "@/components/ui/Loading";
 
 interface ProductPrice {
   _id: string;
@@ -14,9 +15,13 @@ const ProductManagementPage: React.FC = () => {
     null
   );
   const [newPrice, setNewPrice] = useState<number | "">("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isUpdatePriceLoading, setIsUpdatePriceLoading] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const fetchProductPrices = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
 
@@ -34,6 +39,8 @@ const ProductManagementPage: React.FC = () => {
       } catch (error) {
         console.error("Error fetching product prices:", error);
         toast.error("Failed to fetch product prices. Please try again.");
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -51,6 +58,7 @@ const ProductManagementPage: React.FC = () => {
 
   const handleUpdatePrice = async () => {
     if (selectedProduct && newPrice !== "") {
+      setIsUpdatePriceLoading(true);
       try {
         const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
 
@@ -79,9 +87,13 @@ const ProductManagementPage: React.FC = () => {
       } catch (error) {
         console.error("Error updating product price:", error);
         toast.error("Failed to update product price. Please try again.");
+      } finally {
+        setIsUpdatePriceLoading(false);
       }
     }
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="container mx-auto py-10 px-4 pb-24">
@@ -103,7 +115,7 @@ const ProductManagementPage: React.FC = () => {
           </ul>
         </div>
         <div>
-          {selectedProduct && (
+          {!isUpdatePriceLoading && selectedProduct && (
             <div>
               <h2 className="text-xl font-semibold mb-4">
                 Update Price for {selectedProduct.product}
@@ -134,6 +146,7 @@ const ProductManagementPage: React.FC = () => {
               </form>
             </div>
           )}
+          {isUpdatePriceLoading && <Loading />}
         </div>
       </div>
     </div>

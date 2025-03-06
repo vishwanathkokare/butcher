@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/admin/table";
+import Loading from "@/components/ui/Loading";
 
 interface Order {
   _id: string;
@@ -22,9 +23,11 @@ interface Order {
 
 const Home: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
 
@@ -47,6 +50,8 @@ const Home: React.FC = () => {
       } catch (error) {
         console.error("Error fetching orders:", error);
         toast.error("Failed to fetch orders. Please try again.");
+      }finally {
+        setIsLoading(false);
       }
     };
 
@@ -54,6 +59,8 @@ const Home: React.FC = () => {
     const interval = setInterval(fetchOrders, 5000); // Poll every 5 seconds
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="container mx-auto py-10 px-4">

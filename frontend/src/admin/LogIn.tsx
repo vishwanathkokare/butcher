@@ -3,10 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAdminAuth } from "@/contexts/AdminAuthContext";
 import { toast } from "react-hot-toast";
+import Loading from "@/components/ui/Loading";
 
 const LogIn: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Local loading state
   const { login } = useAdminAuth();
 
   const validatePassword = (password: string): string | null => {
@@ -26,19 +28,24 @@ const LogIn: React.FC = () => {
     const validationError = validatePassword(password);
     if (validationError) {
       setError(validationError);
-      toast.error(validationError); // Show error toast
+      toast.error(validationError);
       return;
     }
 
+    setIsLoading(true); // Show loading spinner
     try {
-      await login(password); // Call the login function from the context
-      toast.success("Login successful!"); // Show success toast
-      setError(null); // Clear any previous errors
+      await login(password);
+      toast.success("Login successful!");
+      setError(null);
     } catch (error) {
       console.error("Login error:", error);
-      toast.error("Login failed. Please check your password."); // Show error toast
+      toast.error("Login failed. Please check your password.");
+    } finally {
+      setIsLoading(false); // Hide loading spinner
     }
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -58,7 +65,7 @@ const LogIn: React.FC = () => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                setError(null); // Clear error when the user types
+                setError(null);
               }}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Enter your password"
