@@ -37,7 +37,7 @@ const ProductManagementPage: React.FC = () => {
   const handleUpdatePrice = async () => {
     if (selectedProduct && newPrice !== '') {
       try {
-        const response = await axios.put(`https://butcher-jtol.onrender.com/api/v1/market/prices/${selectedProduct._id}`, { price: newPrice });
+        const response = await axios.put(`/api/v1/market/prices/${selectedProduct._id}`, { price: newPrice });
         setProductPrices(productPrices.map(p => (p._id === selectedProduct._id ? response.data : p)));
         setSelectedProduct(null);
         setNewPrice('');

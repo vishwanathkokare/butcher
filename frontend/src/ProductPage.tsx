@@ -93,7 +93,7 @@ const ProductPage: React.FC = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-800 min-h-screen p-4">
+    <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-800 min-h-screen p-4 pb-24">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Section - Image */}
