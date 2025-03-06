@@ -115,7 +115,7 @@ const ProductManagementPage: React.FC = () => {
           </ul>
         </div>
         <div>
-          {!isUpdatePriceLoading && selectedProduct && (
+          {selectedProduct && (
             <div>
               <h2 className="text-xl font-semibold mb-4">
                 Update Price for {selectedProduct.product}
@@ -141,12 +141,11 @@ const ProductManagementPage: React.FC = () => {
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Update Price
+                  {isUpdatePriceLoading ? "Updating..." : "Update Price"}
                 </button>
               </form>
             </div>
           )}
-          {isUpdatePriceLoading && <Loading />}
         </div>
       </div>
     </div>
