@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="bg-gray-200 dark:bg-zinc-800 mx-auto py-10 px-12 dark:text-white">
       <h1 className="text-2xl font-bold mb-4">Orders</h1>
       <Table>
         <TableHeader>

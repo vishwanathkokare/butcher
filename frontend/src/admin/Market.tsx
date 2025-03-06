@@ -96,11 +96,11 @@ const ProductManagementPage: React.FC = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="container mx-auto py-10 px-4 pb-24">
-      <h1 className="text-2xl font-bold mb-4">Product Management</h1>
+    <div className="bg-gray-200 dark:bg-zinc-800  mx-auto py-10 px-12 pb-24">
+      <h1 className="text-2xl font-bold mb-4 dark:text-white">Product Management</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h2 className="text-xl font-semibold mb-4">Product Prices</h2>
+          <h2 className="text-xl font-semibold mb-4 dark:text-white">Product Prices</h2>
           <ul>
             {productPrices.map((product) => (
               <li key={product._id} className="mb-2">
@@ -116,7 +116,7 @@ const ProductManagementPage: React.FC = () => {
         </div>
         <div>
           {selectedProduct && (
-            <div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
               <h2 className="text-xl font-semibold mb-4">
                 Update Price for {selectedProduct.product}
               </h2>
