@@ -4,7 +4,6 @@ node_modules
 # Local Netlify folder
 .netlify
 bubblewrap
-<<<<<<< HEAD
 build
 frontend/build
 frontend/dist/android-chrome-192x192.png
@@ -33,8 +32,3 @@ frontend/dist/assets/main-Bi5fGRn2.js
 frontend/dist/assets/NotFound-BWqmdJhF.js
 frontend/dist/assets/ProductPage-BfCImwOg.js
 frontend/dist/assets/utils-uYTjRYPR.js
-=======
-.replit
-dist
-frontend/dist
->>>>>>> 4f5db60c0d2c6fe64baa2d5d4da16fdd9de199c8
