@@ -1,7 +1,7 @@
 import HomeBox from "./components/ui/HomeBox";
 import Chicken from "@/assets/chicken.webp";
-import Mutton from "@/assets/goat.jpeg";
-import Eggs from "@/assets/egg.jpg";
+import Mutton from "@/assets/goat.png"
+import Eggs from "@/assets/egg.png";
 import Beef from "@/assets/beef.png";
 const Home = () => {
   return (
