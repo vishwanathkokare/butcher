@@ -14,13 +14,11 @@ const ProductPage: React.FC = () => {
   const [image, setImage] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
   const [errors, setErrors] = useState({
     quantity: "",
   });
 
   useEffect(() => {
-    setLoading(true);
     const params = new URLSearchParams(location.search);
     const imageUrl = params.get("image");
     if (imageUrl) {
@@ -37,14 +35,10 @@ const ProductPage: React.FC = () => {
 
     const fetchProductPrice = async () => {
       try {
-        const response = await axios.get(
-          `/api/v1/market/prices/${name}`
-        );
+        const response = await axios.get(`/api/v1/market/prices/${name}`);
         setPrice(response.data.price);
       } catch (error) {
         console.error("Error fetching product price:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -69,28 +63,20 @@ const ProductPage: React.FC = () => {
 
   const handleAddToCart = () => {
     if (validate()) {
-      setLoading(true);
-      setTimeout(
-        () =>
-          dispatch({
-            type: "ADD_TO_CART",
-            payload: {
-              name: name || "",
-              quantity: Number(quantity),
-              image,
-              price,
-            },
-          }),
-        2000
-      );
-      setLoading(false);
-      toast.success("Added to cart");
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: {
+          name: name || "",
+          quantity: Number(quantity),
+          image,
+          price,
+        },
+      }),
+        toast.success("Added to cart");
     }
   };
 
   const totalPrice = price * Number(quantity);
-
-  if (loading) return <Loading />;
 
   return (
     <div className="text-black dark:text-white bg-gray-200 dark:bg-zinc-800 min-h-screen p-4 pb-24">
@@ -134,10 +120,7 @@ const ProductPage: React.FC = () => {
             {name && name.toLowerCase() !== "eggs" && (
               <div className="flex flex-wrap gap-2">
                 {name && name.toLowerCase() === "mutton" && (
-                  <Button
-                    variant="outline"
-                    onClick={() => setQuantity(0.25)}
-                  >
+                  <Button variant="outline" onClick={() => setQuantity(0.25)}>
                     250g
                   </Button>
                 )}
@@ -163,9 +146,8 @@ const ProductPage: React.FC = () => {
               type="button"
               onClick={handleAddToCart}
               className="w-full bg-blue-500 hover:bg-blue-700 text-white py-3 rounded-lg"
-              disabled={loading}
             >
-              {loading ? "Adding to Cart..." : "Add to Cart"}
+              Add to Cart
             </Button>
           </div>
         </div>
