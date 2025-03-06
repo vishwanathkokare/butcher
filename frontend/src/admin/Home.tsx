@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import {
   Table,
   TableBody,
@@ -28,6 +29,7 @@ const Home: React.FC = () => {
         const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
 
         if (!token) {
+          toast.error("No authentication token found");
           throw new Error("No authentication token found");
         }
 
@@ -38,8 +40,10 @@ const Home: React.FC = () => {
         });
 
         setOrders(response.data.orders.reverse()); // Reverse the order of the fetched orders
+        toast.success("Orders fetched successfully!");
       } catch (error) {
         console.error("Error fetching orders:", error);
+        toast.error("Failed to fetch orders. Please try again.");
       }
     };
 

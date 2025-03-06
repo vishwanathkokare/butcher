@@ -6,9 +6,8 @@ import { useAdminAuth } from "@/contexts/AdminAuthContext";
 const LogIn: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const { login } = useAdminAuth();
-  const handleLogin = () => {
-   login(password);
-  };
+
+  const handleLogin = async () => await login(password);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -16,7 +15,10 @@ const LogIn: React.FC = () => {
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
         <div className="space-y-4">
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <Input

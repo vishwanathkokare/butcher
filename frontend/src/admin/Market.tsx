@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 interface ProductPrice {
   _id: string;
@@ -30,8 +31,10 @@ const ProductManagementPage: React.FC = () => {
         });
 
         setProductPrices(response.data); // Set the fetched product prices
+        toast.success("Product prices fetched successfully!");
       } catch (error) {
         console.error("Error fetching product prices:", error);
+        toast.error("Failed to fetch product prices. Please try again.");
       }
     };
 
@@ -73,8 +76,10 @@ const ProductManagementPage: React.FC = () => {
         );
         setSelectedProduct(null);
         setNewPrice("");
+        toast.success("Product price updated successfully!");
       } catch (error) {
         console.error("Error updating product price:", error);
+        toast.error("Failed to update product price. Please try again.");
       }
     }
   };

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { toast} from "react-hot-toast";
 import axios from "axios";
 
 interface AdminAuthContextType {
@@ -22,8 +23,10 @@ export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children 
       localStorage.removeItem("authToken");
       localStorage.setItem("authToken", response.data.token); // Store token in localStorage
       setIsAuthenticated(true);
+      toast.success("Login successful!");
     } catch (error) {
       console.error("Login failed:", error);
+      toast.error("Login failed. Please try again.");
       throw error;
     }
   };
@@ -31,6 +34,7 @@ export const AdminAuthProvider: React.FC<{ children: ReactNode }> = ({ children 
   const logout = () => {
     localStorage.removeItem("authToken"); // Remove token from localStorage
     setIsAuthenticated(false);
+    toast.success("Logout successful!");
   };
 
   return (
