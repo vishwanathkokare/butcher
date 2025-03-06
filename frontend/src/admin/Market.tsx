@@ -80,7 +80,7 @@ const ProductManagementPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="container mx-auto py-10 px-4 pb-24">
       <h1 className="text-2xl font-bold mb-4">Product Management</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
