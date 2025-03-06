@@ -39,11 +39,12 @@ const Home: React.FC = () => {
           },
         });
 
-        const resOrders = response.data.orders.reverse()
+        const resOrders = response.data.orders.reverse();
 
         setOrders(resOrders); // Reverse the order of the fetched orders
-        orders !== resOrders && toast.success("Orders fetched successfully!");
-        orders.length !== 0 && toast.error("No orders found!");
+        orders.length !== 0 &&
+          orders !== resOrders &&
+          toast.success("Orders fetched successfully!");
       } catch (error) {
         console.error("Error fetching orders:", error);
         toast.error("Failed to fetch orders. Please try again.");
