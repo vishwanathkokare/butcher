@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 interface ProductPrice {
   _id: string;
@@ -9,16 +9,29 @@ interface ProductPrice {
 
 const ProductManagementPage: React.FC = () => {
   const [productPrices, setProductPrices] = useState<ProductPrice[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<ProductPrice | null>(null);
-  const [newPrice, setNewPrice] = useState<number | ''>('');
+  const [selectedProduct, setSelectedProduct] = useState<ProductPrice | null>(
+    null
+  );
+  const [newPrice, setNewPrice] = useState<number | "">("");
 
   useEffect(() => {
     const fetchProductPrices = async () => {
       try {
-        const response = await axios.get('/api/v1/market/prices');
-        setProductPrices(response.data);
+        const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
+
+        if (!token) {
+          throw new Error("No authentication token found");
+        }
+
+        const response = await axios.get("/api/v1/market/prices", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the request headers
+          },
+        });
+
+        setProductPrices(response.data); // Set the fetched product prices
       } catch (error) {
-        console.error('Error fetching product prices:', error);
+        console.error("Error fetching product prices:", error);
       }
     };
 
@@ -35,14 +48,33 @@ const ProductManagementPage: React.FC = () => {
   };
 
   const handleUpdatePrice = async () => {
-    if (selectedProduct && newPrice !== '') {
+    if (selectedProduct && newPrice !== "") {
       try {
-        const response = await axios.put(`/api/v1/market/prices/${selectedProduct._id}`, { price: newPrice });
-        setProductPrices(productPrices.map(p => (p._id === selectedProduct._id ? response.data : p)));
+        const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
+
+        if (!token) {
+          throw new Error("No authentication token found");
+        }
+
+        const response = await axios.put(
+          `/api/v1/market/prices/${selectedProduct._id}`,
+          { price: newPrice },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the request headers
+            },
+          }
+        );
+
+        setProductPrices(
+          productPrices.map((p) =>
+            p._id === selectedProduct._id ? response.data : p
+          )
+        );
         setSelectedProduct(null);
-        setNewPrice('');
+        setNewPrice("");
       } catch (error) {
-        console.error('Error updating product price:', error);
+        console.error("Error updating product price:", error);
       }
     }
   };
@@ -54,7 +86,7 @@ const ProductManagementPage: React.FC = () => {
         <div>
           <h2 className="text-xl font-semibold mb-4">Product Prices</h2>
           <ul>
-            {productPrices.map(product => (
+            {productPrices.map((product) => (
               <li key={product._id} className="mb-2">
                 <button
                   className="text-blue-500 hover:underline"
@@ -69,7 +101,9 @@ const ProductManagementPage: React.FC = () => {
         <div>
           {selectedProduct && (
             <div>
-              <h2 className="text-xl font-semibold mb-4">Update Price for {selectedProduct.product}</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                Update Price for {selectedProduct.product}
+              </h2>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

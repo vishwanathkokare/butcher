@@ -7,12 +7,13 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "./components/ui/Navbar";
 import Header from "./components/ui/Header";
 import SlotTime from "./components/ui/SlotTime";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 
 const Home = lazy(() => import("./Home"));
 const ProductPage = lazy(() => import("./ProductPage"));
 const CartPage = lazy(() => import("./CartPage"));
 const NotFound = lazy(() => import("./NotFound"));
-const Main = lazy(() => import("./admin/main"));
+const Main = lazy(() => import("./admin/App"));
 
 const App: React.FC = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -32,6 +33,7 @@ const App: React.FC = () => {
 
   return (
     <CartProvider>
+      <AdminAuthProvider>
       <Toaster position="top-right" reverseOrder={false} />
       <Router>
         <SlotTime />
@@ -49,6 +51,7 @@ const App: React.FC = () => {
 
         <Navbar />
       </Router>
+      </AdminAuthProvider>
     </CartProvider>
   );
 };

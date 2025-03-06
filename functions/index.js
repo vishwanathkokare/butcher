@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import connectDB from '../database/index.js';
 import orderRouter from '../routes/order.js';
 import marketRouter from '../routes/market.js';
+import adminRouter from '../routes/admin.js';
 import cors from 'cors';
 import frontendRouter from '../routes/frontend.js';
 
@@ -33,6 +34,7 @@ app.use(cors(corsOptions));
 // API routes
 app.use('/api/v1/order', orderRouter);
 app.use('/api/v1/market', marketRouter);
+app.use('/api/v1/admin', adminRouter);
 
 // Catch-all route for API 404 errors
 app.use('/api/*', (req, res) => {
